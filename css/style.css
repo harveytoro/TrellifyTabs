@@ -1,0 +1,27 @@
+#container{
+  text-align: center;
+  padding: 10px;
+  height: 100px;
+  width: 400px;
+}
+
+#trellify {
+  display:inline-block;
+  width:199px;
+  border-right-width: 1px;
+  border-right-color: black;
+  border-right-style: solid;
+  text-align: center;
+}
+
+#restore {
+  padding-left: 1px;
+  float: right;
+  width:199px;
+  text-align: center;
+}
+
+.clear{
+  clear:both;
+  padding-top: 10px;
+}

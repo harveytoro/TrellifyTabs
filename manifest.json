@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "Trellify Tabs",
+  "description": "Chrome extension to save tabs to Trello and then restore tabs",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icons/icon.png",
+    "default_popup": "html/page_popup.html"
+  },
+  "permissions": [
+    "tabs"
+  ]
+}
