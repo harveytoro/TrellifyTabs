@@ -1,4 +1,7 @@
 {
+  "name": "TrellifyTabs",
+  "private": true,
+  "version": "1.0.0",
   "dependencies": {
     "client": "https://api.trello.com/1/client.js",
     "jquery": "~2.1.4"
