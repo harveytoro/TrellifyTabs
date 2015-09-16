@@ -11,6 +11,7 @@ Not quite ready to be put in the chrome app store
   - [ ] To give ability to leave tabs open when trellified
   - [ ] Currently limited to the current Chrome window, this could be optional
 - [ ] Check that a name for the tab set has been given or auto populate with date / time
+
 ## Usage
 
 To use the extension in the current form.
