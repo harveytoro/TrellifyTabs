@@ -4,14 +4,17 @@
   document.addEventListener('DOMContentLoaded', function() {
 
     // TODO: Change to be configurable from options page
-    const API_KEY = 'DEVELOPER_API_KEY_HERE';
-    const AUTH_TOKEN = 'AUTH_TOKEN_HERE';
-    const TRELLO_BOARD = 'BOARD_NAME_HERE';
-    const TRELLO_LIST = 'LIST_NAME_HERE';
+    const TRELLO_BOARD = 'Tabs';
+    const TRELLO_LIST = 'Tabs';
+
+    if (!localStorage.trellifyToken || !localStorage.trellifyApiKey) {
+      $('#container').html('<p>ERROR: Token and/or API key missing.</p>');
+      return;
+    }
 
     // Set key and token on Trello object
-    Trello.setKey(API_KEY);
-    Trello.setToken(AUTH_TOKEN);
+    Trello.setKey(localStorage.trellifyApiKey);
+    Trello.setToken(localStorage.trellifyToken);
 
     // Trellify the tabs
     document.getElementById('btn-trellify').addEventListener('click', function() {
