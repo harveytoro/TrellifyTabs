@@ -20,6 +20,9 @@
   width:199px;
   text-align: center;
 }
+#restore-cards{
+  width: 199px;
+}
 
 .clear{
   clear:both;
