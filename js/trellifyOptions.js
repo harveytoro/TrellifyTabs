@@ -15,7 +15,7 @@
 
     // Trellify the tabs
     document.getElementById('btn-token').addEventListener('click', function() {
-      if (localStorage.trello_token) {
+      if (localStorage.getItem('trello_token') !== null) {
         Trello.deauthorize();
         authorizedState();
       } else {
@@ -30,9 +30,9 @@
       }
     });
 
-    function authorizedState(){
-      if (localStorage.trello_token) {
-        localStorage.trellifyToken = localStorage.trello_token;
+    function authorizedState() {
+      if (localStorage.getItem('trello_token') !== null) {
+        localStorage.trellifyToken = localStorage.getItem('trello_token');
         $('#btn-token').text('Deauthorize Trello');
         $('#btn-token').removeClass('btn-success').addClass('btn-warning');
       } else {
