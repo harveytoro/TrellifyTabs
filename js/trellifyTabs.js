@@ -4,11 +4,14 @@
   document.addEventListener('DOMContentLoaded', function() {
 
     // TODO: Change to be configurable from options page
-    const TRELLO_BOARD = 'Tabs';
+    const TRELLO_BOARD = 'Learning';
     const TRELLO_LIST = 'Tabs';
 
     if (!localStorage.trellifyToken || !localStorage.trellifyApiKey) {
       $('#container').html('<p>ERROR: Token and/or API key missing.</p>');
+      return;
+    } else if (!localStorage.trellifyListId) {
+      $('#container').html('<p>ERROR: No List has been set. Please go to options to set this.</p>');
       return;
     }
 
@@ -19,13 +22,7 @@
     // Trellify the tabs
     document.getElementById('btn-trellify').addEventListener('click', function() {
 
-      var trellifyPromise;
-
-      if (localStorage.list) {
-        trellifyPromise = Promise.resolve(localStorage.list);
-      }else {
-        trellifyPromise = getListId();
-      }
+      var trellifyPromise = Promise.resolve(localStorage.trellifyListId);
 
       trellifyPromise.then(function(listId) {
         var cardPromise = new Promise(function(toResolve, orReject) {
@@ -72,12 +69,7 @@
     });
 
     // Restore tabs
-    var restorePromise;
-    if (localStorage.list) {
-      restorePromise = Promise.resolve(localStorage.list);
-    }else {
-      restorePromise = getListId();
-    }
+    var restorePromise = Promise.resolve(localStorage.trellifyListId);
 
     restorePromise.then(function(listId) {
       return new Promise(function(toResolve, orReject) {
