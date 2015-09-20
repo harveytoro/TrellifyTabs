@@ -3,10 +3,6 @@
 
   document.addEventListener('DOMContentLoaded', function() {
 
-    // TODO: Change to be configurable from options page
-    const TRELLO_BOARD = 'Learning';
-    const TRELLO_LIST = 'Tabs';
-
     if (!localStorage.trellifyToken || !localStorage.trellifyApiKey) {
       $('#container').html('<p>ERROR: Token and/or API key missing.</p>');
       return;
@@ -22,25 +18,21 @@
     // Trellify the tabs
     document.getElementById('btn-trellify').addEventListener('click', function() {
 
-      var trellifyPromise = Promise.resolve(localStorage.trellifyListId);
+      var cardPromise = new Promise(function(toResolve, orReject) {
+        Trello.post('cards', {
+          name: $('#cardName').val(),
+          idList: localStorage.trellifyListId,
+          due: null,
+        }, toResolve);
+      });
 
-      trellifyPromise.then(function(listId) {
-        var cardPromise = new Promise(function(toResolve, orReject) {
-          Trello.post('cards', {
-            name: $('#cardName').val(),
-            idList: listId,
-            due: null,
-          }, toResolve);
-        });
+      var tabPromise = new Promise(function(toResolve, orReject) {
+        chrome.tabs.query({
+          windowId: chrome.windows.WINDOW_ID_CURRENT,
+        }, toResolve);
+      });
 
-        var tabPromise = new Promise(function(toResolve, orReject) {
-          chrome.tabs.query({
-            windowId: chrome.windows.WINDOW_ID_CURRENT,
-          }, toResolve);
-        });
-
-        return Promise.all([cardPromise, tabPromise]);
-      }).then(function(cardTabArray) {
+      Promise.all([cardPromise, tabPromise]).then(function(cardTabArray) {
         var cardId = cardTabArray[0].id;
         var tabs = cardTabArray[1];
         var attachmentPromises = [];
@@ -69,13 +61,9 @@
     });
 
     // Restore tabs
-    var restorePromise = Promise.resolve(localStorage.trellifyListId);
-
-    restorePromise.then(function(listId) {
-      return new Promise(function(toResolve, orReject) {
-        Trello.get('lists/' + listId + '/cards?attachments=true', toResolve);
-      });
-    }).then(function(cards) {
+    var restorePromise = new Promise(function(toResolve, orReject) {
+        Trello.get('lists/' + localStorage.trellifyListId + '/cards?attachments=true', toResolve);
+      }).then(function(cards) {
       if (cards.length === 0) {
         $('#restore-cards').append('<option>None to restore</option>');
       }
@@ -108,36 +96,5 @@
         });
       }
     });
-
-    function getListId() {
-      return new Promise(function(toResolve, orReject) {
-        Trello.get('members/my/boards', toResolve);
-      }).then(function(boards) {
-        var boardId = '';
-        for (var i = 0; i < boards.length; i++) {
-          if (boards[i].name === TRELLO_BOARD) {
-            boardId = boards[i].id;
-            break;
-          }
-        }
-
-        return new Promise(function(toResolve, orReject) {
-          Trello.get('boards/' + boardId + '/lists', toResolve);
-        });
-      }, function(err) {
-
-      }).then(function(lists) {
-        var listId = '';
-        for (var i = 0; i < lists.length; i++) {
-          if (lists[i].name === TRELLO_LIST) {
-            listId = lists[i].id;
-            break;
-          }
-        }
-
-        localStorage.list = listId;
-        return listId;
-      });
-    }
   });
 })();

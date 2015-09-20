@@ -7,7 +7,7 @@
     Trello.setKey(localStorage.trellifyApiKey);
 
     Trello.authorize({
-      interactive:false,
+      interactive: false,
       success: authorizedState,
     });
 

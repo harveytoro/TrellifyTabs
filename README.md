@@ -34,16 +34,6 @@ To insert your developer API key.
 
 To get a trello developer API key go [here](https://trello.com/app-key)
 
-Modify trellifyTabs.js
-
-```javascript
-const TRELLO_BOARD = 'BOARD_NAME_HERE';
-const TRELLO_LIST = 'LIST_NAME_HERE';
-```
-
-Add the name of the board and list where you would like the extension to save the link cards.
-For a given set of tabs when you trellify the tabs a new card is created with the name supplied in the extension popup and then link attachments are added to the card for each tab URL.
-
 Go to chrome://extensions in Chrome with developer mode ticked click load unpacked extension and navigate to the TrellifyTabs directory.
 
-Once you have added the extension to Chrome the options page will display allowing you to authorize your trello account.
+Once you have added the extension to Chrome the options page will display allowing you to authorize your trello account and set which board list you would like to save tabs too.
