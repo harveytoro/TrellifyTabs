@@ -45,6 +45,7 @@
         });
       }).then(function(list) {
         localStorage.trellifyListId = (typeof list === 'string') ? list : list.id;
+        localStorage.trellifyBoardId = boardId;
       });
     });
 

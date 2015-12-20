@@ -5,26 +5,37 @@
 
     <link rel="stylesheet" href="../css/style.css">
 
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/client/index.js"></script>
 
     <script src="../js/trellifyTabs.js"></script>
   </head>
   <body>
-    <div id="container">
-      <h3>Tabs</h3>
-      <div id="trellify">
-        <input type="text" placeholder="Name" id="cardName" />
-        <div class="clear"></div>
-        <button id="btn-trellify">Trellify</button>
+  <h3>Create / Restore tab collection:</h3>
+      <div class="section-trellify">
+        <input type="text" class="form-control" placeholder="Name" id="cardName" />
+        <button class="btn btn-block btn-default" id="btn-trellify">Trellify</button>
       </div>
-      <div id="restore">
-        <select id="restore-cards">
-          <option id="loading-option" data-card="">Loading</option>
-        </select>
-        <div class="clear"></div>
-        <button id="btn-restore">Restore</button>
+
+      <div class="section-restore">
+        <select  class="form-control" id="restore-cards">
+                <option id="loading-option" data-card="">Loading</option>
+              </select>
+              <button class="btn btn-block  btn-default" id="btn-restore">Restore</button>
       </div>
-    </div>
+  <h3>Bookmark current tab:</h3>
+  <div class="section-bookmark-name">
+    <input type="text" class="form-control" placeholder="Name" id="cardNameBookmark" />
+  </div>
+
+  <div class="section-bookmark-list">
+    <select  class="form-control" id="cardListBookmark">
+      <option id="loading-option-bookmark" data-list="">Loading</option>
+    </select>
+  </div>
+<div class="section-bookmark-btn">
+  <button class="btn btn-block  btn-default" id="btn-bookmark">Bookmark</button>
+</div>
   </body>
 </html>

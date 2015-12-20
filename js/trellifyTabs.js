@@ -96,5 +96,36 @@
         });
       }
     });
+
+    var listPromise = new Promise(function(toResolve, orReject){
+      Trello.get('/boards/' + localStorage.trellifyBoardId + '/lists', toResolve);
+    }).then(function(lists){
+
+      for(var i = 0; i < lists.length; i++) {
+        $('#cardListBookmark').append('<option data-list='+  lists[i].id + '>' + lists[i].name + '</option>');
+      }
+
+      document.getElementById('loading-option-bookmark').remove();
+    });
+
+    document.getElementById('btn-bookmark').addEventListener('click', function() {
+      var currentTabPromise = new Promise(function(toResolve, orReject){
+        chrome.tabs.query({
+          active: true,
+          currentWindow: true,
+        }, toResolve);
+      }).then(function(tabArray){
+        var listId = document.getElementById('cardListBookmark').options[document.getElementById('cardListBookmark').selectedIndex].dataset.list;
+
+        Trello.post('cards', {
+          name: $('#cardNameBookmark').val().length != 0 ? $('#cardNameBookmark').val() : tabArray[0].title,
+          idList: listId,
+          due: null,
+          urlSource: tabArray[0].url
+        }, function(){
+          window.close();
+        });
+      });
+    });
   });
 })();
