@@ -46,6 +46,7 @@
       }).then(function(list) {
         localStorage.trellifyListId = (typeof list === 'string') ? list : list.id;
         localStorage.trellifyBoardId = boardId;
+        localStorage.trellifyTabClose = $('#inp-closeTab').is(':checked');
       });
     });
 

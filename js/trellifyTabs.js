@@ -56,7 +56,9 @@
         var cardShortUrl = values[0];
         var tabsToRemove = values[values.length - 1];
         chrome.tabs.create({  url: cardShortUrl, });
-        chrome.tabs.remove(tabsToRemove);
+        if (localStorage.trellifyTabClose  == "true"){
+          chrome.tabs.remove(tabsToRemove);
+        }
       });
     });
 
