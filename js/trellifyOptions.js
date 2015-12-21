@@ -45,6 +45,7 @@
         });
       }).then(function(list) {
         localStorage.trellifyListId = (typeof list === 'string') ? list : list.id;
+        localStorage.trellifyListName = listName;
         localStorage.trellifyBoardId = boardId;
         localStorage.trellifyTabClose = $('#inp-closeTab').is(':checked');
       });
@@ -57,8 +58,15 @@
         for (var i = 0; i < boards.length; i++) {
           if (boards[i].closed) continue;
           var name =  boards[i].name.length > 20 ? boards[i].name.substr(0, 20) + '...' : boards[i].name;
-          $('#board-names').append('<option value="' + boards[i].id + '">' + name + '</option>');
+
+          var selected = "";
+          if(boards[i].id == localStorage.trellifyBoardId){
+            selected = "selected";
+          }
+
+          $('#board-names').append('<option ' + selected + ' value="' + boards[i].id + '">' + name + '</option>');
         }
+        $('#inp-listName').val(localStorage.trellifyListName);
       });
     }
 
