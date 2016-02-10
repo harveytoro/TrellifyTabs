@@ -118,16 +118,27 @@
         }, toResolve);
       }).then(function(tabArray){
         var listId = document.getElementById('cardListBookmark').options[document.getElementById('cardListBookmark').selectedIndex].dataset.list;
-
+        var label = document.getElementById('boardLabels').options[document.getElementById('boardLabels').selectedIndex].dataset.label;
+        var labelId = (label == "None")? null: label;
         Trello.post('cards', {
           name: $('#cardNameBookmark').val().length != 0 ? $('#cardNameBookmark').val() : tabArray[0].title,
           idList: listId,
+          idLabels: labelId, 
           due: null,
           urlSource: tabArray[0].url
         }, function(){
           window.close();
         });
       });
+    });
+    
+    
+    var labelPromise = new Promise(function(toResolve, orReject){
+      Trello.get('/boards/' + localStorage.trellifyBoardId + '/labels', toResolve);
+    }).then(function(labels){
+      for(var i = 0; i < labels.length; i++) {
+        $('#boardLabels').append('<option data-label='+  labels[i].id + '>' + labels[i].name + '</option>');
+      }
     });
   });
 })();
