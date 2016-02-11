@@ -2,16 +2,19 @@
 
 **Chrome extension to create collections of tabs that are saved and restored from  [Trello](https://trello.com). Ability to bookmark single tab**
 
-Not quite ready to be put in the chrome app store
-
+Not quite ready to be put in the chrome app store (Getting closer)
+![screenshot](extension.png)
 ## TODO
 - [ ] Add options page
   - [x] To allow configuration of board and list that the tab cards are be added to
   - [x] To go through auth flow and save in local storage
-  - [ ] To give ability to leave tabs open when trellified
+  - [x] To give ability to leave tabs open when trellified
+  - [ ] To give ability to turn of either bookmarking section or trellify section
+  - [ ] Ability to disable tab usage 
 - [ ] Check that a name for the tab set has been given or auto populate with date / time
 - [x] Improve design (html, css)
 - [x] Ability to bookmark current tab
+- [ ] Ability to see that the page has already been bookmarked
 
 ## Usage
 
