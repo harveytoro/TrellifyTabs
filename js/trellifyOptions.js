@@ -48,6 +48,8 @@
         localStorage.trellifyListName = listName;
         localStorage.trellifyBoardId = boardId;
         localStorage.trellifyTabClose = $('#inp-closeTab').is(':checked');
+        localStorage.trellifyDisableTrellify = $('#inp-disableTrellify').is(':checked')
+        localStorage.trellifyDisableBookmarking = $('#inp-disableBookmarking').is(':checked');
       });
     });
 
@@ -77,6 +79,18 @@
         $('#btn-token').removeClass('btn-success').addClass('btn-warning');
         $('#authorizedOnly').removeClass('hidden');
         populateBoardNames();
+        
+        if(localStorage.trellifyTabClose == "true"){
+          $('#inp-closeTab').prop('checked', true);
+        }
+        
+        if(localStorage.trellifyDisableTrellify == "true"){
+          $('#inp-disableTrellify').prop('checked', true);
+        }
+        if(localStorage.trellifyDisableBookmarking == "true"){
+          $('#inp-disableBookmarking').prop('checked', true);
+        }
+        
       } else {
         localStorage.removeItem('trellifyToken');
         $('#btn-token').text('Authorize Trello');

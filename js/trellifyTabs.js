@@ -10,6 +10,18 @@
       $('#container').html('<p>ERROR: No List has been set. Please go to options to set this.</p>');
       return;
     }
+    
+    
+    if(localStorage.trellifyDisableTrellify == "true") {
+      $('.trellifying').hide();
+    }
+    
+    if(localStorage.trellifyDisableBookmarking == "true") {
+     // $('body').css('width','400px');
+      $('.bookmarking').hide();
+    }
+    
+    
 
     // Set key and token on Trello object
     Trello.setKey(localStorage.trellifyApiKey);
