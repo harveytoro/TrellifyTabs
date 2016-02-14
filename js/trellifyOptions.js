@@ -50,6 +50,7 @@
         localStorage.trellifyTabClose = $('#inp-closeTab').is(':checked');
         localStorage.trellifyDisableTrellify = $('#inp-disableTrellify').is(':checked')
         localStorage.trellifyDisableBookmarking = $('#inp-disableBookmarking').is(':checked');
+        localStorage.trellifyDisableLabel = $('#inp-disableLabel').is(':checked');
         $('.updateMsg').css("display","block");
         setTimeout(function() {
             $('.updateMsg').css("display","none");
@@ -95,6 +96,10 @@
           $('#inp-disableBookmarking').prop('checked', true);
         }
         
+        if(localStorage.trellifyDisableLabel == "true"){
+          $('#inp-disableLabel').prop('checked', true);
+        }
+
       } else {
         localStorage.removeItem('trellifyToken');
         $('#btn-token').text('Authorize Trello');

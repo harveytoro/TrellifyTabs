@@ -18,6 +18,10 @@
     if(localStorage.trellifyDisableBookmarking == "true") {
       $('.bookmarking').hide();
     }
+    
+    if(localStorage.trellifyDisableLabel == "true") {
+      $('.section-bookmark-label').hide();
+    }
 
     // Set key and token on Trello object
     Trello.setKey(localStorage.trellifyApiKey);
@@ -140,13 +144,14 @@
       });
     });
     
-    
-    var labelPromise = new Promise(function(toResolve, orReject){
-      Trello.get('/boards/' + localStorage.trellifyBoardId + '/labels', toResolve);
-    }).then(function(labels){
-      for(var i = 0; i < labels.length; i++) {
-        $('#boardLabels').append('<option data-label='+  labels[i].id + '>' + labels[i].name + '</option>');
-      }
-    });
+    if(localStorage.trellifyDisableLabel == "false") {
+        var labelPromise = new Promise(function(toResolve, orReject){
+          Trello.get('/boards/' + localStorage.trellifyBoardId + '/labels', toResolve);
+        }).then(function(labels){
+        for(var i = 0; i < labels.length; i++) {
+          $('#boardLabels').append('<option data-label='+  labels[i].id + '>' + labels[i].name + '</option>');
+        }
+      });
+    }
   });
 })();
