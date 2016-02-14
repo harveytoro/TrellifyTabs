@@ -50,6 +50,10 @@
         localStorage.trellifyTabClose = $('#inp-closeTab').is(':checked');
         localStorage.trellifyDisableTrellify = $('#inp-disableTrellify').is(':checked')
         localStorage.trellifyDisableBookmarking = $('#inp-disableBookmarking').is(':checked');
+        $('.updateMsg').css("display","block");
+        setTimeout(function() {
+            $('.updateMsg').css("display","none");
+        }, 5000);
       });
     });
 
