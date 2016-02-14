@@ -53,7 +53,7 @@
         $('.updateMsg').css("display","block");
         setTimeout(function() {
             $('.updateMsg').css("display","none");
-        }, 5000);
+        }, 2000);
       });
     });
 
