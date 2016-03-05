@@ -153,5 +153,19 @@
         }
       });
     }
+    
+    // hitting enter on bookmark input, perform click
+    $(".section-bookmark-name input").keypress(function (e) {
+        if (e.keyCode == 13) {
+            $("#btn-bookmark").click();
+        }
+    });
+    
+    // hitting enter on trellify input, perform click
+    $(".section-trellify input").keypress(function (e) {
+        if (e.keyCode == 13) {
+            $("#btn-trellify").click();
+        }
+    });
   });
 })();
