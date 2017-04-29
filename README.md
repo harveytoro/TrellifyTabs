@@ -9,8 +9,8 @@ Not quite ready to be put in the chrome app store (Getting closer)
   - [x] To allow configuration of board and list that the tab cards are be added to
   - [x] To go through auth flow and save in local storage
   - [x] To give ability to leave tabs open when trellified
-  - [ ] To give ability to turn of either bookmarking section or trellify section
-  - [ ] Ability to disable tab usage 
+  - [x] To give ability to turn of either bookmarking section or trellify section
+  - [x] Ability to disable tab usage 
 - [ ] Check that a name for the tab set has been given or auto populate with date / time
 - [x] Improve design (html, css)
 - [x] Ability to bookmark current tab
